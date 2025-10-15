@@ -1,0 +1,242 @@
+{
+	// 4-character identifer that uniquely identifies your extension.
+	// Can be letters, numbers, or punctuation, but must be 4 ASCII characters.
+	"Identifier": "ASMT",
+	"Dependencies": "",
+	"UK English": {
+		"About": {
+			"Name": "Asker Math",
+			"Author": "asker",
+			"Copyright": "Copyright \u00A9 2025 by asker",
+			"Comment": "Useful math functions",
+			"Help": "Help/Example.chm",
+			"URL": "https://www.askerino.com/"
+		},
+		"ExpressionMenu": [
+			[
+				"Lerping",
+				[ 0, "Lerp" ],
+				[ 1, "Lerp Unclamped" ],
+				[ 2, "Lerp Angle" ],
+				[ 3, "Inverse Lerp" ],
+				[ 4, "Inverse Lerp Unclamped" ],
+				"---",
+				[ 10, "Move Towards" ],
+				[ 11, "Rotate Towards" ]
+			],
+			[
+				"Easing",
+				[ 5, "Easing (0.0 - 1.0)" ],
+				[ 6, "Easing With Custom Time" ]
+			],
+			[
+				"Math",
+				[ 14, "Distance between points" ],
+				[ 15, "Dot product" ],
+				[
+					"Distance between point and line",
+					[ 16, "Distance between point and line" ],
+					[ 17, "X on line from last call" ],
+					[ 18, "Y on line from last call" ],
+					[ 19, "X on line from last call Unclamped" ],
+					[ 20, "Y on line from last call Unclamped" ],
+					[ 21, "X normal on line from last call" ],
+					[ 22, "Y normal on line from last call" ]
+				],
+				[ 7, "Repeat (non-negative mod)" ],
+				[ 8, "Sign" ],
+				[ 9, "Delta Angle" ],
+				[ 12, "Bit-shift Left" ],
+				[ 13, "Bit-shift Right" ]
+			]
+		],
+		"Expressions": [
+			{
+				"Title": "Lerp(",
+				"Returns": "Float",
+				"Parameters": [
+					[ "Float", "Start Value" ],
+					[ "Float", "End Value" ],
+					[ "Float", "Time" ]
+				]
+			},
+			{
+				"Title": "LerpU(",
+				"Returns": "Float",
+				"Parameters": [
+					[ "Float", "Start Value" ],
+					[ "Float", "End Value" ],
+					[ "Float", "Time" ]
+				]
+			},
+			{
+				"Title": "LerpAngle(",
+				"Returns": "Float",
+				"Parameters": [
+					[ "Float", "Start Angle" ],
+					[ "Float", "End Angle" ],
+					[ "Float", "Time" ]
+				]
+			},
+			{
+				"Title": "InvLerp(",
+				"Returns": "Float",
+				"Parameters": [
+					[ "Float", "Start Value" ],
+					[ "Float", "End Value" ],
+					[ "Float", "Value" ]
+				]
+			},
+			{
+				"Title": "InvLerpU(",
+				"Returns": "Float",
+				"Parameters": [
+					[ "Float", "Start Value" ],
+					[ "Float", "End Value" ],
+					[ "Float", "Value" ]
+				]
+			},
+			{
+				"Title": "Easing(",
+				"Returns": "Float",
+				"Parameters": [
+					[ "Integer", "Easing Type" ],
+					[ "Float", "Start Value" ],
+					[ "Float", "End Value" ],
+					[ "Float", "Time" ]
+				]
+			},
+			{
+				"Title": "Easing2(",
+				"Returns": "Float",
+				"Parameters": [
+					[ "Integer", "Easing Type" ],
+					[ "Float", "Start Value" ],
+					[ "Float", "End Value" ],
+					[ "Float", "Time Start" ],
+					[ "Float", "Time End" ],
+					[ "Float", "Time" ]
+				]
+			},
+			{
+				"Title": "Repeat(",
+				"Returns": "Float",
+				"Parameters": [
+					[ "Float", "Value" ],
+					[ "Float", "Length" ]
+				]
+			},
+			{
+				"Title": "Sign(",
+				"Returns": "Float",
+				"Parameters": [
+					[ "Float", "Value" ]
+				]
+			},
+			{
+				"Title": "DeltaAngle(",
+				"Returns": "Float",
+				"Parameters": [
+					[ "Float", "Current Angle" ],
+					[ "Float", "Target Angle" ]
+				]
+			},
+			{
+				"Title": "Move(",
+				"Returns": "Float",
+				"Parameters": [
+					[ "Float", "Current Value" ],
+					[ "Float", "Towards Value" ],
+					[ "Float", "Delta" ]
+				]
+			},
+			{
+				"Title": "Rotate(",
+				"Returns": "Float",
+				"Parameters": [
+					[ "Float", "Current Angle" ],
+					[ "Float", "Towards Angle" ],
+					[ "Float", "Delta" ]
+				]
+			},
+			{
+				"Title": "BSLeft(",
+				"Returns": "Integer",
+				"Parameters": [
+					[ "Integer", "Value" ],
+					[ "Integer", "Steps" ]
+				]
+			},
+			{
+				"Title": "BSRight(",
+				"Returns": "Integer",
+				"Parameters": [
+					[ "Integer", "Value" ],
+					[ "Integer", "Steps" ]
+				]
+			},
+			{
+				"Title": "Dist(",
+				"Returns": "Float",
+				"Parameters": [
+					[ "Float", "x1" ],
+					[ "Float", "y1" ],
+					[ "Float", "x2" ],
+					[ "Float", "y2" ]
+				]
+			},
+			{
+				"Title": "Dot(",
+				"Returns": "Float",
+				"Parameters": [
+					[ "Float", "x1" ],
+					[ "Float", "y1" ],
+					[ "Float", "x2" ],
+					[ "Float", "y2" ]
+				]
+			},
+			{
+				"Title": "DistToLine(",
+				"Returns": "Float",
+				"Parameters": [
+					[ "Float", "p1" ],
+					[ "Float", "p2" ],
+					[ "Float", "x1" ],
+					[ "Float", "y1" ],
+					[ "Float", "x2" ],
+					[ "Float", "y2" ]
+				]
+			},
+			{
+				"Title": "DistToLineLastX(",
+				"Returns": "Float",
+				"Parameters": []
+			},
+			{
+				"Title": "DistToLineLastY(",
+				"Returns": "Float",
+				"Parameters": []
+			},
+			{
+				"Title": "DistToLineLastXU(",
+				"Returns": "Float",
+				"Parameters": []
+			},
+			{
+				"Title": "DistToLineLastYU(",
+				"Returns": "Float",
+				"Parameters": []
+			},
+			{
+				"Title": "DistToLineLastNormX(",
+				"Returns": "Float",
+				"Parameters": []
+			},
+			{
+				"Title": "DistToLineLastNormY(",
+				"Returns": "Float",
+				"Parameters": []
+			}
+		]
+	}
+}
