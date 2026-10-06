@@ -1593,6 +1593,7 @@ void Extension::SendMsg_Clear()
 	free(SendMsg);
 	SendMsg = NULL;
 	SendMsgSize = 0;
+	SendMsgCursor = 0;
 }
 void Extension::RecvMsg_DecompressBinary()
 {

@@ -537,12 +537,22 @@ void Extension::SendMsg_Sub_AddData(const void * data, size_t size)
 	if (!size)
 		return;
 
-	// Failed to reallocate memory
-	char * newptr = (char *)realloc(SendMsg, SendMsgSize + size);
-	if (!newptr)
+	// Grow the send array only when the cursor and new data exceed its current size.
+	const size_t oldSize = SendMsgSize;
+	const size_t writeOffset = SendMsgCursor;
+	const size_t requiredSize = writeOffset + size;
+	char * newptr = SendMsg;
+	if (requiredSize > oldSize)
 	{
-		return CreateError("Error number %d occurred when reallocating memory to append new data (%p, %zu bytes) to binary "
-			"message (orig; %p). The message has not been modified.", errno, data, size, SendMsg);
+		newptr = (char *)realloc(SendMsg, requiredSize);
+		if (!newptr)
+		{
+			return CreateError("Error number %d occurred when reallocating memory to append new data (%p, %zu bytes) to binary "
+				"message (orig; %p). The message has not been modified.", errno, data, size, SendMsg);
+		}
+		// Clear the newly allocated memory
+		memset(newptr + SendMsgSize, 0, requiredSize - oldSize);
+		SendMsgSize = requiredSize;
 	}
 
 	// memcpy_s does not allow copying from what's already inside SendMsg; memmove_s does.
@@ -550,26 +560,26 @@ void Extension::SendMsg_Sub_AddData(const void * data, size_t size)
 	const void * src = data;
 
 	// Can't read from data; it's inside SendMsg which we just realloc'd, so we'll use offset instead
-	if (data >= SendMsg && data <= SendMsg + SendMsgSize)
+	if (data >= SendMsg && data <= SendMsg + oldSize)
 		src = newptr + (((const char *)data) - SendMsg);
 
 	// memmove_s returns error number, 0 on success; memmove returns dest on success, has undefined behavior on error
 #ifdef _WIN32
-	errnoErrOrPtr = memmove_s(newptr + SendMsgSize, size, src, size);
+		errnoErrOrPtr = memmove_s(newptr + writeOffset, size, src, size);
 #else
-	errnoErrOrPtr = memmove(newptr + SendMsgSize, src, size) == NULL ? EINVAL : 0;
+		errnoErrOrPtr = memmove(newptr + writeOffset, src, size) == NULL ? EINVAL : 0;
 #endif
 
 	// If we failed to copy memory. SendMsg is now invalid, so we have to set it to newptr anyway, so no return.
 	if (errnoErrOrPtr != 0)
 	{
 		CreateError("Error number %d occurred when copying memory (%p, %zu bytes) into newly allocated binary message (orig %p; new %p). "
-			"The message has been resized, but the data not copied in.", errnoErrOrPtr, src, size, SendMsg, newptr + SendMsgSize);
-		memset(newptr + SendMsgSize, 0, size); // Don't leave it uninited
+			"The message has been resized, but the data not copied in.", errnoErrOrPtr, src, size, SendMsg, newptr + writeOffset);
+		memset(newptr + writeOffset, 0, size); // Don't leave it uninited
 	}
 
 	SendMsg = newptr;
-	SendMsgSize += size;
+	SendMsgCursor += size;
 }
 bool Extension::IsValidPtr(const void * data)
 {
@@ -1152,7 +1162,7 @@ long Extension::UnlinkedExpression(int ID)
 Extension::GlobalInfo::GlobalInfo(Extension * e, const EDITDATA* const edPtr)
 	: _objEventPump(lacewing::eventpump_new(), eventpumpdeleter),
 	_client(_objEventPump.get()),
-	_sendMsg(nullptr), _sendMsgSize(0),
+	_sendMsg(nullptr), _sendMsgSize(0), _sendMsgCursor(0),
 	_automaticallyClearBinary(edPtr->automaticClear), _thread(),
 	lastDestroyedExtSelectedChannel(), lastDestroyedExtSelectedPeer(), lock()
 {

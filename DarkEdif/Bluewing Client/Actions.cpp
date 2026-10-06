@@ -542,6 +542,7 @@ void Extension::SendMsg_Clear()
 		SendMsg = NULL;
 	}
 	SendMsgSize = 0;
+	SendMsgCursor = 0;
 }
 void Extension::RecvMsg_SaveToFile(int position, int size, const TCHAR * filename)
 {

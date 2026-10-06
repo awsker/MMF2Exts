@@ -62,6 +62,7 @@ public:
 	#define SendMsg						globals->_sendMsg
 	#define DenyReason					globals->_denyReason
 	#define SendMsgSize					globals->_sendMsgSize
+	#define SendMsgCursor				globals->_sendMsgCursor
 	#define AutomaticallyClearBinary	globals->_automaticallyClearBinary
 	#define GlobalID					globals->_globalID
 	#define NewChannelName				globals->_newChannelName
@@ -368,6 +369,7 @@ struct Extension::GlobalInfo final
 	char * _sendMsg = nullptr;
 	// Number of bytes in binary message to send (sendMsg)
 	size_t _sendMsgSize = 0U;
+	unsigned int _sendMsgCursor = 0U;
 
 	// Current handler's name set/channel join/etc deny reason.
 	// Can be set by Lacewing itself before name set request is submitted, e.g. if name is already set to what was requested.

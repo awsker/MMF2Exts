@@ -59,6 +59,7 @@ public:
 #define SendMsg						globals->_sendMsg
 #define DenyReasonBuffer			globals->_denyReasonBuffer
 #define SendMsgSize					globals->_sendMsgSize
+#define SendMsgCursor				globals->_sendMsgCursor
 #define AutomaticallyClearBinary	globals->_automaticallyClearBinary
 #define GlobalID					globals->_globalID
 #define HostIP						globals->_hostIP
@@ -278,6 +279,7 @@ public:
 		char* _sendMsg;
 		// Number of bytes in binary message to send (sendMsg)
 		std::size_t _sendMsgSize;
+		unsigned int _sendMsgCursor;
 
 		// Previous name of this client, as UTF-8
 		std::string _previousName;
