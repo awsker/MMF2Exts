@@ -264,6 +264,7 @@ Extension::Extension(const EDITDATA* const edPtr, void* const objCExtPtr, const 
 		LinkExpression(61, NetScan_ServerIP);
 		LinkExpression(62, NetScan_ServerVersion);
 		LinkExpression(63, NetScan_ServerWelcomeMessage);
+		LinkExpression(64, RecvMsg_CursorPosition);
 	}
 
 	isGlobal = edPtr->isGlobal;

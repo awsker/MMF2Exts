@@ -347,7 +347,12 @@ unsigned int Extension::RecvMsg_MemoryAddress()
 		return CreateError("Can't return received message memory address, not a received message event."), 0U;
 	return (unsigned int)((unsigned long)threadData->GetRecvMsg().content.data());
 }
-
+unsigned int Extension::RecvMsg_CursorPosition()
+{
+	if (!threadData->IsRecvMsg())
+		return CreateError("Can't return received message cursor position, not a received message event."), 0U;
+	return (unsigned int)(threadData->GetRecvMsg().cursor);
+}
 const TCHAR * Extension::RecvMsg_Cursor_StrASCIIByte()
 {
 	if (!threadData->IsRecvMsg())

@@ -239,6 +239,7 @@ public:
 	// ReplacedExprNoParams
 	const TCHAR* WelcomeMessage();
 	unsigned int RecvMsg_MemoryAddress();
+	unsigned int RecvMsg_CursorPosition();
 	const TCHAR* RecvMsg_Cursor_StrASCIIByte();
 	unsigned int RecvMsg_Cursor_UnsignedByte();
 	int RecvMsg_Cursor_SignedByte();

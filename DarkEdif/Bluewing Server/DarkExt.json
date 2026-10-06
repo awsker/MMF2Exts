@@ -278,6 +278,7 @@
 				"---",
 				[ 14, "Get binary size" ],
 				[ 15, "Get binary memory address" ],
+				[ 54, "Get binary cursor position" ],
 				[ 43, "Dump to string" ],
 				[ "Get binary data",
 					[ "Byte",
@@ -1517,6 +1518,10 @@
 					[ "Integer", "Use local time (0) or UTC (1)?" ],
 					[ "Text", "strftime() format (or \"\" for default)" ]
 				]
+			},
+			{
+				"Title": "CursorPosition(",
+				"Returns": "Unsigned Integer"
 			}
 		],
 		"Properties": [
@@ -3423,6 +3428,7 @@
 				"---",
 				[ 14, "Extraire la taille du Binaire" ],
 				[ 15, "Extraire l'adresse mémoire du Binaire" ],
+				[ 54, "Position du curseur binaire" ],
 				[ 43, "Vidage du Binaire dans une String" ],
 				[ "Extraire les données du Binaire",
 					[ "Octet",
@@ -4658,6 +4664,10 @@
 					[ "Integer", "Use local time (0) or UTC (1)?" ],
 					[ "Text", "strftime() format (or \"\" for default)" ]
 				]
+			},
+			{
+				"Title": "CursorPosition(",
+				"Returns": "Unsigned Integer"
 			}
 		],
 		"Properties": [

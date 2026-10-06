@@ -264,6 +264,10 @@ unsigned int Extension::RecvMsg_MemoryAddress()
 {
 	return (unsigned int)(long)threadData->receivedMsg.content.data();
 }
+unsigned int Extension::RecvMsg_CursorPosition()
+{
+	return (unsigned int)threadData->receivedMsg.cursor;
+}
 const TCHAR * Extension::RecvMsg_Cursor_StrASCIIByte()
 {
 	if (threadData->receivedMsg.content.size() - threadData->receivedMsg.cursor < sizeof(char))

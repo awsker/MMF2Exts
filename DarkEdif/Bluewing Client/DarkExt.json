@@ -265,6 +265,7 @@
 				"---",
 				[ 30, "Get binary size" ],
 				[ 42, "Get binary memory address" ],
+				[ 64, "Get binary cursor position" ],
 				[ 55, "Dump to string" ],
 				[ "Get binary data",
 					[ "Byte",
@@ -1471,6 +1472,10 @@
 			{
 				"Title": "NetScanServerWelcomeMessage$(",
 				"Returns": "Text"
+			},
+			{
+				"Title": "CursorPosition(",
+				"Returns": "Unsigned Integer"
 			}
 		],
 		"Properties": [

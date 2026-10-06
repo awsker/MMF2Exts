@@ -256,6 +256,7 @@ Extension::Extension(const EDITDATA* const edPtr, void* const objCExtPtr, const 
 		LinkExpression(51, WebSocket_Insecure_Port);
 		LinkExpression(52, WebSocket_Secure_Port);
 		LinkExpression(53, WebSocket_Cert_ExpiryTime);
+		LinkExpression(54, RecvMsg_CursorPosition);
 	}
 
 #if EditorBuild

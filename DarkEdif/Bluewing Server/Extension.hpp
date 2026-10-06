@@ -297,6 +297,7 @@ public:
 	int RecvMsg_ReadAsInteger();
 	unsigned int RecvMsg_SizeInBytes();
 	unsigned int RecvMsg_MemoryAddress();
+	unsigned int RecvMsg_CursorPosition();
 	const TCHAR * RecvMsg_StrASCIIByte(int index);
 	unsigned int RecvMsg_UnsignedByte(int index);
 	int RecvMsg_SignedByte(int index);
